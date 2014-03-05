@@ -1,7 +1,7 @@
 /******************************************
  * jQuery FitFrame
  *
- * A plugin that makes content collapsible.
+ * A lightweight, easy-to-use jQuery plugin for responsive iframes.
  *
  * Author          @benfosterdev (http://ben.onfabrik.com)
  * Copyright       Copyright (c) 2013 Ben Foster.
