@@ -43,13 +43,13 @@ If you're adding DOM elements to your container at runtime you have two options.
 		$('.add-embed').before(wrapped);
 
 
-You can see an example of this in `demos/demo-wrap.html` that uses [embed.ly](http://embed.ly/) to dynamically load videos using a URL. Note that you'll need to set your embedly API key in the code.
+You can see an example of this in [demos/demo-wrap.html](demos/demo-wrap.html) that uses [embed.ly](http://embed.ly/) to dynamically load videos using a URL. Note that you'll need to set your embedly API key in the code.
 
 ## Usage (resize mode)       
 
-The `resize` mode binds to the resize event of `window` and sets the size of the iframe element to fit the container. No wrapper element is used and you don't need to add any additional CSS.
+The `resize` mode binds to the `window` resize event and sets the size of the iframe element to fit the container. No wrapper element is used and you don't need to add any additional CSS.
 
-If you just want to fit your iframes to the width of the container then you are best off using the `wrap` mode. That said, with the use of CSS transitions we can create a more interesting experience when resizing the browser. You can see an example of this in `demos/demo-resize-width.html`. To use `resize` mode:
+If you just want to fit your iframes to the width of the container then you are best off using the `wrap` mode. That said, with the use of CSS transitions we can create a more interesting experience when resizing the browser. You can see an example of this in [demos/demo-resize-width.html](demos/demo-resize-width.html). To use `resize` mode:
 
 	$('.container').fitFrame({ mode: 'resize' });
 
@@ -78,7 +78,7 @@ To do this, set the `fitHeight` option to true:
 	 fitHeight: true
 	});
 	
-You can see an example of this in /demos/demo-resize-height.html`.
+You can see an example of this in [demos/demo-resize-height.html](demos/demo-resize-height.html).
 
 ## Options
 
