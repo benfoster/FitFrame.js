@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>FitFrame.js Wrap Resize Height Tests</title>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+    
+    .container {
+      height: 100%;
+      box-sizing: border-box;
+      padding: 2em; 
+      
+      text-align: center;
+    }
+  
+    .fitframe {
+      transition: width 300ms, height 300ms;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <iframe src="//player.vimeo.com/video/87590640" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/jquery.fitframe.js"></script>
+
+    <script>
+      $('.container').fitFrame({
+       mode: 'resize',
+        fitHeight: true
+      });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>FitFrame.js Wrap Mode Tests</title>
+  <link rel="stylesheet" href="/fitframe.css" />
+
+  <style>
+    .fitframe-wrap {
+     margin-bottom: 1em; 
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>1. Existing DOM elements</h3>
+    <iframe src="//player.vimeo.com/video/68160950" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    <h3>2. Multiple Runtime DOM Elements</h3>
+    <a class="embed" href="http://vimeo.com/87449235"></a>
+    <a class="embed" href="http://vimeo.com/81815874"></a>
+
+    <h3>3. Invididual Runtime DOM Elements</h3>
+
+    <p class="add-embed">
+      <input type="text" value="https://vimeo.com/87590640" />
+      <button class="add">Add Video</button>
+    </p>
+
+    <h3>4. Destroy/Re-Init</h3>
+    <p>
+      <button class="destroy">Destroy</button>
+      <button class="init">Init</button>
+    </p>
+
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
+  <script src="/jquery.fitframe.js"></script>
+
+
+  <script>
+    // 1. Existing DOM Elements
+    $('.container').fitFrame();
+    
+    $.embedly.defaults.key = 'Your Embedly Key';
+    
+    // 2. Multiple Runtime DOM Elements
+    $('.embed').embedly({ 
+      done: function() {
+        // checks for new iframes in the container and makes them responsive
+        $('.container').fitFrame('update');    
+      }
+    });
+
+    // 3. Individual Runtime DOM Elements
+    $('button.add').on('click', function() {
+      
+      var url = $('input').val();
+      
+      if (!url.length) {
+        return;
+      }
+      
+      $.embedly.oembed(url, {
+        wrapElement: null  
+      })
+      .progress(function(embed) { 
+        var wrapped = $('.container').fitFrame('wrap', $(embed.html));      
+        $('.add-embed').before(wrapped);
+      });
+    });
+    
+    // 4. Destroy / Reinit
+    $('button.destroy').on('click', function() {
+      $('.container').fitFrame('destroy');
+    });
+    $('button.init').on('click', function() {
+      $('.container').fitFrame({ mode: 'resize' });
+    });
+  </script>
+</body>
+
+</html>
