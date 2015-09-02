@@ -1,0 +1,31 @@
+{
+  "name": "FitFrame",
+  "version": "0.0.1",
+  "homepage": "https://github.com/benfoster/FitFrame.js",
+  "authors": [
+    "benfoster <ben@planetcloud.co.uk>"
+  ],
+  "description": "A lightweight, easy-to-use jQuery plugin to responisve iframes",
+  "main": [
+    "jquery.fitframe.js",
+    "fitframe.css"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3",
+  },
+  "keywords": [
+    "iframe",
+    "responsive",
+    "RWD"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".gitignore",
+    "LICENSE"
+  ]
+}
