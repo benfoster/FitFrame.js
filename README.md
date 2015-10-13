@@ -8,6 +8,10 @@ A lightweight, easy-to-use jQuery plugin for responsive iframes.
 
 FitFrame.js requires jQuery. It has only been tested with jQuery 1.11 so if you have problems with any other versions let me know.
 
+You can install via bower
+
+    bower install fitframe --save
+
 If you're using `mode: wrap` (the default) you'll want to reference `fitframe.css`:
 
 	<link rel="stylesheet" href="fitframe.css" />
@@ -15,7 +19,7 @@ If you're using `mode: wrap` (the default) you'll want to reference `fitframe.cs
 And of course you'll need to reference jQuery and FitFrame.js:
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="jquery.fitframe.js"></script>
+	<script src="fitframe.js"></script>
 	
 ## Usage (wrap mode)
 

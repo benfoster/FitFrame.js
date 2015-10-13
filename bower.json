@@ -1,5 +1,5 @@
 {
-  "name": "FitFrame",
+  "name": "fitframe",
   "version": "0.0.1",
   "homepage": "https://github.com/benfoster/FitFrame.js",
   "authors": [
@@ -10,11 +10,11 @@
   ],
   "description": "A lightweight, easy-to-use jQuery plugin to responsive iframes",
   "main": [
-    "jquery.fitframe.js",
+    "fitframe.js",
     "fitframe.css"
   ],
   "dependencies": {
-    "jquery": "~1.11.3"
+    "jquery": "~2.1"
   },
   "keywords": [
     "iframe",
