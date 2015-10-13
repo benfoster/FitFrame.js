@@ -10,7 +10,7 @@ FitFrame.js requires jQuery. It has only been tested with jQuery 1.11 so if you 
 
 You can install via bower
 
-    bower install FitFrame
+    bower install FitFrame --save
 
 If you're using `mode: wrap` (the default) you'll want to reference `fitframe.css`:
 
