@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>FitFrame.js Fit ViewPort Height</title>
+  <link rel="stylesheet" href="/fitframe.css" />
+
+  <style>
+    /* Styles go here */
+    
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .media-item {
+      text-align: center;
+      margin-bottom: 4em;
+    }
+    
+    .media-item .media img {
+      max-height: inherit;
+      max-width: 100%;
+    }
+    
+    .container {
+      position: relative;
+      padding: 20px;
+    }
+  </style>
+
+  <script data-require="jquery@2.1.1" data-semver="2.1.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/fitframe.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="media-item">
+      <div class="media media-video">
+        <a class="embed" href="https://vimeo.com/152058910"></a>
+      </div>
+      <div class="caption">
+        <p><strong>Video</strong>
+          <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tortor sed augue bibendum mattis. Sed ullamcorper
+          magna dui, a porta ipsum condimentum hendrerit. </p>
+      </div>
+    </div>
+    <div class="media-item">
+      <div class="media">
+        <img src="http://cdn.onfabrik.com/images/db5/72b86d731d45e223.jpg?maxwidth=1920&maxheight=300" />
+      </div>
+      <div class="caption">
+        <p><strong>Small Image (than viewport)</strong>
+          <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tortor sed augue bibendum mattis. Sed ullamcorper
+          magna dui, a porta ipsum condimentum hendrerit. </p>
+      </div>
+    </div>
+
+    <div class="media-item">
+      <div class="media">
+        <img src="http://cdn.onfabrik.com/images/db5/72b86d731d45e223.jpg?maxwidth=1920&maxheight=1440" />
+      </div>
+      <div class="caption">
+        <p><strong>Largge image (should fit to viewport)</strong>
+          <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tortor sed augue bibendum mattis. Sed ullamcorper
+          magna dui, a porta ipsum condimentum hendrerit. </p>
+      </div>
+    </div>
+    <div class="media-item">
+      <div class="media media-video">
+        <a class="embed" href="https://vimeo.com/140776339"></a>
+      </div>
+      <div class="caption">
+        <p><strong>Video</strong>
+          <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tortor sed augue bibendum mattis. Sed ullamcorper
+          magna dui, a porta ipsum condimentum hendrerit. </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+
+      var t;
+      $(window).on('resize', function () {
+        clearTimeout(t);
+        t = setTimeout(function () {
+          resize();
+        }, 100);
+      });
+
+      resize();
+
+      function resize() {
+        $('.media').css('max-height', getMediaContainerHeight());
+      }
+
+      $('.container').fitFrame({
+        fitHeight: true,
+        containerHeight: getMediaContainerHeight
+      });
+
+      // process embeds
+
+      $('a.embed').each(function () {
+        var $link = $(this);
+        $.getJSON('http://vimeo.com/api/oembed.json?url=' + this.href, function (embed) {
+
+          var iframe = $(embed.html);
+          iframe.css({
+            'max-width': embed.width,
+            'max-height': embed.height
+          });
+
+          $link.html(iframe)
+          $('.container').fitFrame('update');
+        });
+      });
+
+      function getMediaContainerHeight() {
+        return $(window).height() - 40; // Container padding
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

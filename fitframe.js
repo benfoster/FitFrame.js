@@ -7,7 +7,7 @@
  * Copyright       Copyright (c) 2013 Ben Foster.
  * License         MIT
  * Github          https://github.com/benfoster/FitFrame.js
- * Version         0.0.0.1
+ * Version         0.1.0.0
  *
  ******************************************/
 
@@ -15,7 +15,9 @@
 (function ($, window, document, undefined) {
 
   var PLUGIN_NAME = "fitFrame",
-    INSTANCE_KEY = "plugin_" + PLUGIN_NAME;
+      INSTANCE_KEY = "plugin_" + PLUGIN_NAME,
+      MODE_RESIZE = 'resize',
+      MODE_WRAP = 'wrap';
 
   function FitFrame(element, options, defaults) {
     this.element = $(element);
@@ -29,7 +31,7 @@
 
     // Fits any new iframes that have been added to the DOM since initialization
     update: function () {
-      if (this.options.mode === 'resize') {
+      if (this.options.mode === MODE_RESIZE) {
         this._resizeNew();
       } else {
         this._wrapNew();
@@ -63,7 +65,7 @@
     // Removes and cleans up fitFrame.js
     destroy: function () {
       var self = this;
-      if (self.options.mode === 'resize') {
+      if (self.options.mode === MODE_RESIZE) {
         // remove iframe css classes
         this.element.find('iframe.' + this.options.iframeCssClass).each(function () {
           var data = $(this).data(PLUGIN_NAME);
@@ -85,7 +87,13 @@
     },
 
     _init: function () {
-      if (this.options.mode === 'resize') {
+      
+      if (this.options.fitHeight) {
+        // It's not possible to fit height in wrap mode so default to resize
+        this.options.mode = MODE_RESIZE;
+      }
+      
+      if (this.options.mode === MODE_RESIZE) {
         this._bind(); // binds to window resize
       }
 
@@ -127,8 +135,8 @@
     _resizeAll: function () {
 
       var self = this,
-        containerWidth = this.element.width(),
-        containerHeight = this.element.height(),
+        containerWidth = this.options.containerWidth.call(this),
+        containerHeight = this.options.containerHeight.call(this),
         fitHeight = this.options.fitHeight;
 
       this.element.find('iframe.' + this.options.iframeCssClass).each(function () {
@@ -207,8 +215,10 @@
   $.fn[PLUGIN_NAME].defaults = {
     wrapperCssClass: 'fitframe-wrap',
     iframeCssClass: 'fitframe',
-    mode: 'wrap',
-    fitHeight: false
+    mode: MODE_WRAP,
+    fitHeight: false,
+    containerHeight: function() { return this.element.height(); },
+    containerWidth: function() { return this.element.width(); }
   };
 
 

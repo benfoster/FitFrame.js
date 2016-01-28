@@ -15,7 +15,8 @@
 <body>
   <div class="container">
     <h3>1. Existing DOM elements</h3>
-    <iframe src="//player.vimeo.com/video/68160950" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe src="//player.vimeo.com/video/68160950" width="600" height="338" frameborder="0" webkitallowfullscreen mozallowfullscreen
+    allowfullscreen></iframe>
 
     <h3>2. Multiple Runtime DOM Elements</h3>
     <a class="embed" href="http://vimeo.com/87449235"></a>
@@ -37,7 +38,8 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
   <script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
-  <script src="/jquery.fitframe.js" type="text/javascript"></script>
+  <script src="demos.js" type="text/javascript"></script>
+  <script src="/fitframe.js" type="text/javascript"></script>
 
 
   <script>
@@ -45,8 +47,6 @@
     $('.container').fitFrame({
      mode: 'resize'
     });
-    
-    $.embedly.defaults.key = 'Your Embedly Key';
     
     // 2. Multiple Runtime DOM Elements
     $('.embed').embedly({ 
