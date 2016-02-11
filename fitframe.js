@@ -7,7 +7,7 @@
  * Copyright       Copyright (c) 2013 Ben Foster.
  * License         MIT
  * Github          https://github.com/benfoster/FitFrame.js
- * Version         0.1.0.0
+ * Version         0.1.1
  *
  ******************************************/
 
@@ -105,7 +105,7 @@
         // select iframes that haven't already been wrapped
         iframes = this.element.find('iframe')
           .filter(function () {
-            return !$(this).closest(self.options.wrapperCssClass).length
+            return !$(this).closest('.' + self.options.wrapperCssClass).length
           });
 
       iframes.each(function () {
